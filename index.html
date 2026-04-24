@@ -4,32 +4,73 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title> Deneth & Hansi Wedding</title>
+<title>Deneth  & Hansi Wedding</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 body {
-  margin:0;  
+  margin:0;
   font-family:'Playfair Display', serif;
-  background:linear-gradient(to bottom,#fff0f5,#fde2e4);
+  background:#fff0f5;
   text-align:center;
   overflow-x:hidden;
-  cursor:crosshair;
 }
 
-/* SECTIONS */
+/* ENVELOPE */
+#envelopeScreen {
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.envelope {
+  width:280px;
+  height:180px;
+  background:#f8cdda;
+  border-radius:12px;
+  position:relative;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.envelope:before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  border-left:140px solid transparent;
+  border-right:140px solid transparent;
+  border-bottom:90px solid #f3a6b5;
+}
+
+.open-text {
+  margin-top:20px;
+  font-family:'Great Vibes', cursive;
+  font-size:24px;
+  color:#b76e79;
+}
+
+/* MAIN */
+#mainContent {
+  display:none;
+}
+
 .section {
-  padding:90px 20px;
+  padding:70px 20px;
 }
 
-/* TEXT */
 h1 {
   font-family:'Great Vibes', cursive;
-  font-size:55px;
+  font-size:50px;
   color:#d4a373;
 }
-h2 { color:#b76e79; }
+
+h2 {
+  color:#b76e79;
+}
 
 .text {
   font-size:18px;
@@ -37,46 +78,17 @@ h2 { color:#b76e79; }
   line-height:1.8;
 }
 
-/* IMAGE */
+/* images */
 .img-box img {
   width:220px;
   border-radius:20px;
   box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
-/* GALLERY */
-.gallery img {
-  width:120px;
-  margin:10px;
-  border-radius:15px;
-}
-
-/* FADE */
-.fade {
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s;
-}
-.fade.show {
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* FLOWERS */
-.flower {
-  position:fixed;
-  top:-50px;
-  font-size:22px;
-  animation:fall linear infinite;
-}
-@keyframes fall {
-  to { transform:translateY(110vh) rotate(360deg); }
-}
-
-/* BUTTONS */
+/* buttons */
 .btn {
   display:inline-block;
-  margin:10px;
+  margin-top:15px;
   padding:12px 20px;
   background:#d4a373;
   color:white;
@@ -84,7 +96,17 @@ h2 { color:#b76e79; }
   text-decoration:none;
 }
 
-/* MUSIC */
+.save-date {
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 22px;
+  background:#b76e79;
+  color:white;
+  border-radius:25px;
+  text-decoration:none;
+}
+
+/* music button */
 .music-btn {
   position:fixed;
   top:20px;
@@ -95,42 +117,66 @@ h2 { color:#b76e79; }
   padding:10px 15px;
   border-radius:20px;
 }
+
+/* flowers */
+.flower {
+  position:fixed;
+  top:-50px;
+  font-size:20px;
+  animation:fall linear infinite;
+}
+
+@keyframes fall {
+  to { transform:translateY(110vh) rotate(360deg); }
+}
 </style>
 </head>
 
 <body>
 
-<button class="music-btn" onclick="playMusic()">🎶</button>
-
-<audio id="music" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b6b63.mp3">
-</audio>
-
-<!-- HERO -->
-<div class="section fade">
-  <h2>You're Invited</h2>
-  <h1>Deneth & Hansi</h1>
-  <p class="text">Scroll Down 💌</p>
+<!-- 💌 ENVELOPE -->
+<div id="envelopeScreen">
+  <div class="envelope" id="envelope"></div>
+  <p class="open-text">Tap to open 💌</p>
 </div>
 
-<!-- IMAGE -->
-<div class="section fade">
+<!-- 💍 MAIN CONTENT -->
+<div id="mainContent">
+
+<button class="music-btn" onclick="playMusic()">🎶</button>
+
+<!-- 🎵 MUSIC (UPLOAD music.mp3 IN GITHUB) -->
+<audio id="music" loop playsinline>
+  <source src="./music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- TITLE -->
+<div class="section">
+  <h2>You're Invited</h2>
+  <h1>Hansi & Deneth</h1>
+
+  <p class="text">
+  As we begin our journey of love, trust, and togetherness, we would be honored to have you bless our special day with your presence.
+  </p>
+</div>
+
+<!-- IMAGE 1 -->
+<div class="section">
   <div class="img-box">
     <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486">
   </div>
 </div>
 
-<!-- MESSAGE -->
-<div class="section fade">
+<!-- INVITE TEXT -->
+<div class="section">
   <p class="text">
-  Together with Our families,<br>
+  Together with our families,<br>
   we invite you to celebrate our special day 💕
   </p>
 </div>
 
 <!-- DETAILS -->
-<div class="section fade">
-  <h2>Wedding Details</h2>
+<div class="section">
   <p class="text">
   📅 May 14, 2026<br>
   ⏰ 08:30 AM – 04:30 PM<br>
@@ -141,64 +187,70 @@ h2 { color:#b76e79; }
   <a class="btn" href="https://maps.google.com/?q=Ramrich+Hotel+Ekala">📍 View Location</a>
 </div>
 
-<!-- GALLERY -->
-<div class="section fade gallery">
-  <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
-  <img src="https://images.unsplash.com/photo-1529634898944-ef1c8b4b6d4b">
-  <img src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde">
+<!-- IMAGE 2 -->
+<div class="section">
+  <div class="img-box">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
+  </div>
+</div>
+
+<!-- SAVE THE DATE -->
+<div class="section">
+  <h2>Save the Date</h2>
+  <a class="save-date"
+     href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hansi+%26+Deneth+Wedding&dates=20260514T030000Z/20260514T110000Z&details=Wedding+Ceremony&location=Ramrich+Hotel,+Ekala"
+     target="_blank">
+     📅 Add to Calendar
+  </a>
 </div>
 
 <!-- RSVP -->
-<div class="section fade">
+<div class="section">
   <h2>RSVP</h2>
   <p class="text">
-  Kindly respond before 5th May
-    077 3967560
-  </p>
+  Kindly respond before 5th May<br><br>
+  📞 0773967560<br>
+    </p>
 
   <a class="btn" href="https://wa.me/94773967560">💬 RSVP on WhatsApp</a>
 </div>
 
+</div>
+
 <script>
-// fade
-const fades=document.querySelectorAll('.fade');
-window.addEventListener('scroll',()=>{
-  fades.forEach(f=>{
-    if(f.getBoundingClientRect().top < window.innerHeight-50){
-      f.classList.add('show');
-    }
-  });
+document.getElementById("envelope").addEventListener("click", function(){
+
+  document.getElementById("envelopeScreen").style.display="none";
+  document.getElementById("mainContent").style.display="block";
+
+  // 🌸 flowers
+  setInterval(()=>{
+    let f=document.createElement("div");
+    f.className="heart";
+    f.innerHTML="❤️";
+    f.style.left=Math.random()*100+"vw";
+    f.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),8000);
+  },500);
+
+  // 🎵 music autoplay after tap
+  let music = document.getElementById("music");
+  if(music){
+    music.volume = 0.6;
+    music.currentTime = 0;
+    music.play().catch(()=>{});
+  }
+
 });
 
-// flowers
-setInterval(()=>{
-  let f=document.createElement("div");
-  f.className="heart";
-  f.innerHTML="❤️";
-  f.style.left=Math.random()*100+"vw";
-  f.style.animationDuration=(5+Math.random()*5)+"s";
-  document.body.appendChild(f);
-  setTimeout(()=>f.remove(),8000);
-},400);
-
-// music
+// 🎶 manual music button
 function playMusic(){
-  document.getElementById("music").play();
+  let music = document.getElementById("music");
+  if(music){
+    music.play();
+  }
 }
-
-// glitter cursor
-document.addEventListener('mousemove',e=>{
-  let s=document.createElement("div");
-  s.style.position="fixed";
-  s.style.left=e.clientX+"px";
-  s.style.top=e.clientY+"px";
-  s.style.width="6px";
-  s.style.height="6px";
-  s.style.background="#d4a373";
-  s.style.borderRadius="50%";
-  document.body.appendChild(s);
-  setTimeout(()=>s.remove(),500);
-});
 </script>
 
 </body>
